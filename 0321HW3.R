@@ -42,14 +42,13 @@ kable(FinalOutput2, digits=2)
 
 #各隊最有效率的球員(總得分/出戰分鐘數)
 
-efficiency <- NBA1415$TotalPoints /NBA1415$TotalMinutesPlayed
+NBA1415$Efficiency <- NBA1415$TotalPoints / NBA1415$TotalMinutesPlayed
 
-Maxefficiency<-aggregate(efficiency~Team,NBA1415,max)
+MaxEfficiency<-aggregate(Efficiency~Team,NBA1415,max)
 
-NBA1415Maxefficiency<-merge(NBA1415,Maxefficiency)
+NBA1415MaxEfficiency<-merge(NBA1415,MaxEfficiency)
 
-FinalOutput3<-NBA1415Maxefficiency[order(NBA1415Maxefficiency$efficiency,decreasing = T),c("Team","Name","efficiency")]
-
+FinalOutput3<-NBA1415MaxEfficiency[order(NBA1415MaxEfficiency$Efficiency,decreasing = T),c("Team","Name","Efficiency")]
 
 library(knitr)
 kable(FinalOutput3, digits=2)
@@ -60,13 +59,13 @@ kable(FinalOutput3, digits=2)
 
 #各隊三分球出手最準的球員(ThreesMade/ThreesAttempted 最高)
 
-Highest<- NBA1415$ThreesMade / NBA1415$ThreesAttempted
+NBA1415$ThreesHigh <- NBA1415$ThreesMade / NBA1415$ThreesAttempted
 
-MaxHighest<-aggregate(Highest~Team,NBA1415,max)
+MaxThreesHigh<-aggregate(ThreesHigh~Team,NBA1415,max)
 
-NBA1415MaxHighest<-merge(NBA1415,MaxHighest)
+NBA1415MaxThreesHigh<-merge(NBA1415,MaxThreesHigh)
 
-FinalOutput4<-NBA1415MaxHighest[order(NBA1415MaxHighest$Highest,decreasing = T),c("Team","Name","Highest")]
+FinalOutput4<-NBA1415MaxThreesHigh[order(NBA1415MaxThreesHigh$ThreesHigh,decreasing = T),c("Team","Name","ThreesHigh")]
 
 
 library(knitr)
